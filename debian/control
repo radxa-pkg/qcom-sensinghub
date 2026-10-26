@@ -9,12 +9,35 @@ Build-Depends: debhelper-compat (= 13),
                lintian,
                dh-exec,
                pandoc,
+               autoconf,
+               automake,
+               libtool,
+               pkgconf,
+               libglib2.0-dev,
+               camx-protobuf-kodiak-dev,
+               camx-protobuf-kodiak-compiler:native,
 
-Package: qcom-sensinghub
-Architecture: all
-Section: admin
+Package: qcom-sensing-hub
+Architecture: any
+Section: libs
 Priority: optional
-Depends: ${misc:Depends},
-Description: qcom-sensinghub
- This package provides the qcom-sensinghub.
+Replaces: libsensinghub1
+Breaks: libsensinghub1
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+Description: Qualcomm Sensing Hub host libraries
+ Provides host-side APIs, session management, and utility libraries used to
+ communicate with sensor services running on the Qualcomm Sensors DSP.
 
+Package: qcom-sensing-hub-dev
+Architecture: any
+Section: libdevel
+Priority: optional
+Replaces: libsensinghub-dev
+Breaks: libsensinghub-dev
+Depends: qcom-sensing-hub (= ${binary:Version}),
+         camx-protobuf-kodiak-dev,
+         ${misc:Depends},
+Description: Qualcomm Sensing Hub development files
+ Provides headers, sensor protocol definitions, pkg-config metadata, and
+ unversioned library links for Qualcomm Sensing Hub development.

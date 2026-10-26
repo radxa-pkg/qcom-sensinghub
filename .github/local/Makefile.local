@@ -1,0 +1,9 @@
+DEB_BUILD_OPTIONS ?= parallel=$(shell nproc)
+CUSTOM_DEBUILD_ENV = DEB_BUILD_OPTIONS='$(DEB_BUILD_OPTIONS)'
+CUSTOM_DEBUILD_ARG = -aarm64 -Pcross
+
+# Install target libraries as well as native build tools in devcontainer setup.
+# Keep the dependency architecture and build profile aligned with make deb.
+post_build_dep: arm64_crossbuild_dep
+
+arm64_crossbuild_dep: export DEB_BUILD_PROFILES = cross

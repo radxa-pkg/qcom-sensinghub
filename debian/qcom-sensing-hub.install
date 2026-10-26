@@ -1,0 +1,7 @@
+usr/bin/SessionClient
+usr/lib/*/libsensinghubapi.so.1
+usr/lib/*/libsensinghubapi.so.1.0.0
+usr/lib/*/libsensinghubsession.so.1
+usr/lib/*/libsensinghubsession.so.1.0.0
+usr/lib/*/libqshUtil.so.1
+usr/lib/*/libqshUtil.so.1.0.0

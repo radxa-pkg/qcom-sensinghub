@@ -1,0 +1,6 @@
+etc/sensors/proto
+usr/include
+usr/lib/*/libsensinghubapi.so
+usr/lib/*/libsensinghubsession.so
+usr/lib/*/libqshUtil.so
+usr/lib/*/pkgconfig/sensing-hub.pc
