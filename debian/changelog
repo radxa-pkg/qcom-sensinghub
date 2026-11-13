@@ -1,6 +1,6 @@
-qcom-sensinghub (0.1.0-1) UNRELEASED; urgency=medium
+qcom-sensinghub (1.0.6-1) UNRELEASED; urgency=medium
 
-  * Add initial Debian packaging support
+  * Package Qualcomm Sensing Hub v1.0.6
 
- -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Thu, 01 Jan 1970 08:00:00 +0800
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Fri, 23 Oct 2026 10:47:01 +0800
 

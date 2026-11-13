@@ -1,0 +1,38 @@
+export DEB_CFLAGS_MAINT_APPEND = -march=armv8.2-a
+export DEB_CXXFLAGS_MAINT_APPEND = -march=armv8.2-a -std=gnu++17
+
+BUILD_SOURCE := build-source
+
+# Query target libraries when cross-building; protoc remains a native build tool.
+ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+export PKG_CONFIG = pkg-config
+else
+export PKG_CONFIG = $(DEB_HOST_GNU_TYPE)-pkg-config
+endif
+
+EXTRA_DH_OPTIONS += --without autoreconf
+
+# dh_update_autotools_config is part of debhelper's core sequence, so
+# --without autoreconf does not remove it. It must stay overridden or it
+# would run autoconf in src/ and pollute the pinned submodule.
+override_dh_update_autotools_config:
+
+override_dh_auto_configure:
+	rm -rf $(BUILD_SOURCE)
+	mkdir -p $(BUILD_SOURCE)
+	cp -a src/. $(BUILD_SOURCE)/
+	cd $(BUILD_SOURCE) && autoreconf -fiv
+	dh_auto_configure --sourcedirectory=$(BUILD_SOURCE) --builddirectory=build -- \
+		--enable-versioned-lib \
+		--libdir=/usr/lib/$(DEB_HOST_MULTIARCH) \
+		LIBS="$$($(PKG_CONFIG) --libs protobuf)"
+
+override_dh_auto_build:
+	dh_auto_build --sourcedirectory=$(BUILD_SOURCE) --builddirectory=build
+
+override_dh_auto_install:
+	dh_auto_install --sourcedirectory=$(BUILD_SOURCE) --builddirectory=build
+	find debian/tmp -type f -name '*.la' -delete
+
+override_dh_auto_clean:
+	rm -rf build build-source

@@ -1,0 +1,7 @@
+# This is the first Debian revision of the package in the Radxa archive;
+# project packaging is not tied to a Debian BTS issue.
+initial-upload-closes-no-bugs
+
+# Upstream intentionally ships the API, session, and utility SONAMEs as one
+# tightly-coupled Sensing Hub runtime package.
+package-name-doesnt-match-sonames
