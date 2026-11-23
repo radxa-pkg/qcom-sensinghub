@@ -1,3 +1,10 @@
+qcom-sensinghub (1:1.0.6-1) UNRELEASED; urgency=medium
+
+  * Set epoch 1 so APT prefers the Kodiak-compatible Radxa build over the
+    Ubuntu PPA's epoch-zero 2.2.3-3 at equal pin priority.
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Mon, 23 Nov 2026 16:58:31 +0800
+
 qcom-sensinghub (1.0.6-1) UNRELEASED; urgency=medium
 
   * Package Qualcomm Sensing Hub v1.0.6
